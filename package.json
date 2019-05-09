@@ -1,0 +1,29 @@
+{
+  "name": "ray_tracing_in_one_weekend_ts",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "lib/index.js",
+  "author": "Soeren <soeren.vu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:run": "npm run build && npm run run",
+    "run": "node ./lib/index.js",
+    "build": "tsc",
+    "generate-barrels": "barrelsby --delete --location all --directory ./src"
+  },
+  "dependencies": {
+    "gl-matrix": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/gl-matrix": "^2.4.5",
+    "@types/node": "^12.0.0",
+    "barrelsby": "^2.0.0",
+    "typescript": "^3.4.5"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "singleQuote": true
+  }
+}
