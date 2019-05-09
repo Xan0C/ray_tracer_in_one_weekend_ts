@@ -44,4 +44,14 @@ export class Sphere implements Hitable {
         }
         return null;
     }
+
+    static randomInUnitSphere(): vec3 {
+        let p: vec3;
+
+        do {
+            p = vec3.fromValues(Math.random()*2.0 - 1, Math.random()*2.0 - 1, Math.random()*2.0 - 1);
+        } while(vec3.squaredLength(p) >= 1.0);
+
+        return p;
+    }
 }
