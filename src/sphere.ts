@@ -1,14 +1,17 @@
 import { Hitable, HitRecord } from './hitable';
 import { Ray } from './ray';
 import { vec3 } from 'gl-matrix';
+import {Material} from "./material";
 
 export class Sphere implements Hitable {
     private _center: vec3;
     private _radius: number;
+    private _material: Material;
 
-    constructor(center: vec3 = vec3.create(), radius: number = 0) {
-        this._center = center;
+    constructor(center: vec3 = vec3.create(), radius: number = 0, material: Material) {
+        this._center = vec3.clone(center);
         this._radius = radius;
+        this._material = material;
     }
 
     hit(ray: Ray, t_min: number, t_max: number): HitRecord | null {
@@ -28,7 +31,7 @@ export class Sphere implements Hitable {
                     vec3.sub(vec3.create(), p, this._center),
                     1 / this._radius
                 );
-                return { t, p, normal };
+                return { t, p, normal, material: this._material };
             }
             const tempPos = (-b + Math.sqrt(b * b - a * c)) / a;
             if(tempPos < t_max && tempPos > t_min) {
@@ -39,7 +42,7 @@ export class Sphere implements Hitable {
                     vec3.sub(vec3.create(), p, this._center),
                     1 / this._radius
                 );
-                return { t, p, normal };
+                return { t, p, normal, material: this._material };
             }
         }
         return null;

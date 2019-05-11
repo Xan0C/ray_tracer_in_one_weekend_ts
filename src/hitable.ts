@@ -1,10 +1,12 @@
 import { Ray } from './ray';
 import { vec3 } from 'gl-matrix';
+import {Material} from "./material";
 
 export type HitRecord = {
     t: number;
     p: vec3;
     normal: vec3;
+    material: Material;
 };
 
 export interface Hitable {
