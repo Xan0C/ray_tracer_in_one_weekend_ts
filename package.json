@@ -7,12 +7,15 @@
   "author": "Soeren <soeren.vu@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build:run": "npm run build && npm run run",
-    "run": "node ./lib/index.js",
+    "build:run": "npm run build && npm run worker",
+    "worker": "cross-env WORKER=true node --experimental-worker ./lib/index.js",
+    "single": "cross-env SINGLE=true node --experimental-worker ./lib/index.js",
+    "cluster": "cross-env CLUSTER=true node --experimental-worker ./lib/index.js",
     "build": "tsc",
     "generate-barrels": "barrelsby --delete --location all --directory ./src"
   },
   "dependencies": {
+    "comlink": "^4.0.1",
     "gl-matrix": "^3.0.0",
     "mkdirp": "^0.5.1",
     "zeromq": "^5.1.0"
@@ -23,6 +26,8 @@
     "@types/node": "^12.0.0",
     "@types/zeromq": "^4.6.2",
     "barrelsby": "^2.0.0",
+    "cross-env": "^5.2.0",
+    "prettier": "^1.17.1",
     "typescript": "^3.4.5"
   },
   "prettier": {
